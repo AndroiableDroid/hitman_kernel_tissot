@@ -9,20 +9,22 @@
  * published by the Free Software Foundation.
  */
 #include <linux/fs.h>
-#include <linux/namei.h>
-#include <linux/f2fs_fs.h>
 #include <linux/pagemap.h>
-#include <linux/sched.h>
-#include <linux/ctype.h>
-#include <linux/dcache.h>
-#include <linux/namei.h>
+#include <linux/jbd2.h>
+#include <linux/time.h>
+#include <linux/fcntl.h>
+#include <linux/stat.h>
+#include <linux/string.h>
 #include <linux/quotaops.h>
+#include <linux/buffer_head.h>
+#include <linux/bio.h>
+#include "ext4.h"
+#include "ext4_jbd2.h"
 
-#include "f2fs.h"
-#include "node.h"
 #include "xattr.h"
 #include "acl.h"
-#include <trace/events/f2fs.h>
+
+#include <trace/events/ext4.h>
 
 static struct inode *f2fs_new_inode(struct inode *dir, umode_t mode)
 {
